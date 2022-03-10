@@ -30,7 +30,7 @@ namespace Backgrounds_Player
                 _position = new Vector2(0, 0);
         }
 
-        public void Update(GameTime gameTime, float playerSpeedX)
+        public void Update(GameTime gameTime, float playerSpeedX) //
         {
             var speed = (float)(_scrollingSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
@@ -41,11 +41,13 @@ namespace Backgrounds_Player
             _position.X %= _texture.Width;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
-            spriteBatch.Draw(_texture, _position, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
-            spriteBatch.Draw(_texture, _position+new Vector2(_texture.Width, 0), null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
-            spriteBatch.Draw(_texture, _position+new Vector2(_texture.Width*2, 0), null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
+            var position = _position - _scrollingSpeed * cameraPosition / 61;
+            position.X = _position.X - (_scrollingSpeed * cameraPosition.X / 61) % _texture.Width;
+            spriteBatch.Draw(_texture, position, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
+            spriteBatch.Draw(_texture, position + new Vector2(_texture.Width, 0), null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
+            spriteBatch.Draw(_texture, position + new Vector2(_texture.Width*2, 0), null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
         }
     }
 }

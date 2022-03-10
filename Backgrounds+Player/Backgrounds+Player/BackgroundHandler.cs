@@ -17,6 +17,7 @@ namespace Backgrounds_Player
             switch (theme)
             {
                 case 1:
+                    //City
                     var foreground = new ScrollingBackgroundLayer(TextureHandler.Instance.Foreground, 61f, 0.99f);
                     backgrounds.Add(foreground);
 
@@ -38,52 +39,82 @@ namespace Backgrounds_Player
                     var skybox = new ScrollingBackgroundLayer(TextureHandler.Instance.Skybox, 0f, .1f);
                     backgrounds.Add(skybox);
                     break;
+                case 2:
+                    //Ice
+                    var background = new ScrollingBackgroundLayer(TextureHandler.Instance.Background, 0f, .1f);
+                    backgrounds.Add(background);
+
+                    var sun = new ScrollingBackgroundLayer(TextureHandler.Instance.Sun, 0f, .4f);
+                    backgrounds.Add(sun);
+
+                    var back = new ScrollingBackgroundLayer(TextureHandler.Instance.Back, 25f, .5f);
+                    backgrounds.Add(back);
+
+                    var clouds = new ScrollingBackgroundLayer(TextureHandler.Instance.Clouds, 30f, .6f, true);
+                    backgrounds.Add(clouds);
+
+                    var middle = new ScrollingBackgroundLayer(TextureHandler.Instance.Middle, 50f, .8f);
+                    backgrounds.Add(middle);
+
+                    var front = new ScrollingBackgroundLayer(TextureHandler.Instance.Front, 60f, .9f);
+                    backgrounds.Add(front);
+
+                    var path = new ScrollingBackgroundLayer(TextureHandler.Instance.Path, 61f, .99f);
+                    backgrounds.Add(path);
+                    break;
+                case 3:
+                    // Savannah
+                    var sky = new ScrollingBackgroundLayer(TextureHandler.Instance.Sky, 0f, .1f);
+                    backgrounds.Add(sky);
+
+                    var sun1 = new ScrollingBackgroundLayer(TextureHandler.Instance.Sun1, 0f, .2f);
+                    backgrounds.Add(sun1);
+
+                    var ground = new ScrollingBackgroundLayer(TextureHandler.Instance.Ground, 61f, 0.3f);
+                    backgrounds.Add(ground);
+
+                    var treesBack = new ScrollingBackgroundLayer(TextureHandler.Instance.TreesBack, 40f, .4f);
+                    backgrounds.Add(treesBack);
+
+                    var grassBack = new ScrollingBackgroundLayer(TextureHandler.Instance.GrassBack, 61f, .5f);
+                    backgrounds.Add(grassBack);
+
+                    var treeFront = new ScrollingBackgroundLayer(TextureHandler.Instance.TreeFront, 61f, .6f);
+                    backgrounds.Add(treeFront);
+
+                    var grassFront = new ScrollingBackgroundLayer(TextureHandler.Instance.GrassFront, 61f, .7f);
+                    backgrounds.Add(grassFront);
+
+                    var walkingPath = new ScrollingBackgroundLayer(TextureHandler.Instance.WalkingPath, 61f, .8f);
+                    backgrounds.Add(walkingPath);
+                    break;
+                case 4:
+                    var backGround = new ScrollingBackgroundLayer(TextureHandler.Instance.BackGround, 0f, .1f);
+                    backgrounds.Add(backGround);
+
+                    var back3 = new ScrollingBackgroundLayer(TextureHandler.Instance.Back3, 25f, .2f);
+                    backgrounds.Add(back3);
+
+                    var back2 = new ScrollingBackgroundLayer(TextureHandler.Instance.Back2, 30f, .3f);
+                    backgrounds.Add(back2);
+
+                    var back1 = new ScrollingBackgroundLayer(TextureHandler.Instance.Back1, 50f, .4f);
+                    backgrounds.Add(back1);
+
+                    var foreGround = new ScrollingBackgroundLayer(TextureHandler.Instance.ForeGround, 61f, .5f);
+                    backgrounds.Add(foreGround);
+                    break;
                 default:
                     break;
             }
-
-            //    var trees = new Scrollingbackgrounds(TextureHandler.Instance.TreesTexture, player, 60f);
-            //    trees.Layer = 0.99f;
-            //    pinkBackgrounds.Add(trees);
-
-            //    var floor = new Scrollingbackgrounds(TextureHandler.Instance.FloorTexture, player, 60f);    
-            //    floor.Layer = 0.9f;
-            //    pinkBackgrounds.Add(floor);
-
-            //    var hillsFront = new Scrollingbackgrounds(TextureHandler.Instance.hillsFrontTexture, player, 40f);
-            //    hillsFront.Layer = 0.8f;
-            //    pinkBackgrounds.Add(hillsFront);
-
-            //    var hillsMiddle = new Scrollingbackgrounds(TextureHandler.Instance.hillsMiddleTexture, player, 30f);
-            //    hillsMiddle.Layer = 0.79f;
-            //    pinkBackgrounds.Add(hillsMiddle);
-
-            //    var cloudsFast = new Scrollingbackgrounds(TextureHandler.Instance.cloudsFastTexture, player, 25f, true);
-            //    cloudsFast.Layer = 0.78f;
-            //    pinkBackgrounds.Add(cloudsFast);
-
-            //    var hillsBack = new Scrollingbackgrounds(TextureHandler.Instance.hillsBackTexture, player, 0f);
-            //    hillsBack.Layer = 0.77f;
-            //    pinkBackgrounds.Add(hillsBack);
-
-            //    var cloudsSlow = new Scrollingbackgrounds(TextureHandler.Instance.cloudsSlowTexture, player, 10f, true);
-            //    cloudsSlow.Layer = 0.7f;
-            //    pinkBackgrounds.Add(cloudsSlow);
-
-            //    var sky = new Scrollingbackgrounds(TextureHandler.Instance.skyTexture, player, 0f);
-            //    sky.Layer = 0.1f;
-            //    pinkBackgrounds.Add(sky);
-
-            
         }
-
         internal void Update(GameTime gameTime, float playerVelocityX)
         {
-            foreach (var backgroundLayer in backgrounds) backgroundLayer.Update(gameTime, playerVelocityX);
+            //foreach (var backgroundLayer in backgrounds) backgroundLayer.Update(gameTime, playerVelocityX);
         }
-        internal void Draw(SpriteBatch spriteBatch)
+        internal void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
-            foreach (var backgroundLayer in backgrounds.OrderBy(x => x.Layer)) backgroundLayer.Draw(spriteBatch);
+            foreach (var backgroundLayer in backgrounds.OrderBy(x => x.Layer)) backgroundLayer.Draw(spriteBatch, cameraPosition);
         }
     }
 }
